@@ -30,13 +30,18 @@ The system processes incoming data payloads asynchronously with zero server mana
 
 ~~~text
 aws-serverless-event-driven-pipeline/
+├── architecture/
+│   └── architecture-diagram.png  # Programmatically generated system architecture diagram
 ├── src/
-│   ├── lambda_processor.py      # Core Python data validation & transformation logic
-│   └── step_function_def.json   # AWS Step Functions State Machine JSON definition
+│   ├── lambda_processor.py       # Core Python data validation & transformation logic
+│   └── step_function_def.json    # AWS Step Functions State Machine JSON definition
 ├── sample_data/
-│   ├── valid_payload.json       # Valid test record payload
-│   └── invalid_payload.json     # Malformed/Negative test payload triggering SQS DLQ & SNS
-└── README.md                    # System architecture & deployment guide
+│   ├── valid_payload.json        # Valid test record payload
+│   └── invalid_payload.json      # Malformed/Negative test payload triggering SQS DLQ & SNS
+├── generate_diagram.py           # Python script to generate the architecture diagram
+├── .gitignore                    # Git ignore file for temp files and credentials
+├── LICENSE                       # MIT License
+└── README.md                     # Full architecture overview and deployment guide
 ~~~
 
 ---

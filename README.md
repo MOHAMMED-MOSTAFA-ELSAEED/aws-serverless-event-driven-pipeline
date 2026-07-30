@@ -13,43 +13,7 @@
 
 The system processes incoming data payloads asynchronously with zero server management, complete error handling via Dead Letter Queues (DLQ), and automated failover capabilities across two distinct AWS regions.
 
-~~~text
-                                  ☁️ Primary Region (us-east-1)
- ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
- │                                                                                                 │
- │   [ 🪣 S3 Primary Bucket ]                                                                      │
- │              │                                                                                  │
- │              │ (1. S3 Event ObjectCreated)                                                      │
- │              ▼                                                                                  │
- │   [ 🔀 Amazon EventBridge ] ───► [ 🔄 AWS Step Functions State Machine ]                        │
- │                                                  │                                              │
- │                                                  │ (2. Secure Execution)                        │
- │                                                  ▼                                              │
- │                                      [ 🔒 Private VPC Endpoint ]                                │
- │                                                  │                                              │
- │                                                  ▼                                              │
- │                                      [ ⚡ AWS Lambda (Python 3.14) ]                             │
- │                                            │             │                                      │
- │                             (Valid Data)   │             │ (Invalid Data / Exception)           │
- │                                            ▼             ▼                                      │
- │                  [ ⚡ DynamoDB Primary ]       [ 📥 SQS Dead Letter Queue (DLQ) ]               │
- │                                                          │                                      │
- │                                                          ▼                                      │
- │                                                [ 🔔 Amazon SNS Topic ] ──► (Email Alert)        │
- └──────────────────────────────────────────────────────────┼──────────────────────────────────────┘
-                                                            │
-                            ════════════════════════════════╧═════════════════════════════════
-                            🔄 Automated Cross-Region Synchronization
-                            ════════════════════════════════╤═════════════════════════════════
-                                                            │
-                                  ☁️ Secondary DR Region (us-west-2)                               │
- ┌──────────────────────────────────────────────────────────▼──────────────────────────────────────┐
- │                                                                                                 │
- │   [ 🪣 S3 Replica Bucket ] ◄────────── (S3 Cross-Region Replication - CRR)                      │
- │                                                                                                 │
- │   [ ⚡ DynamoDB Replica ]  ◄────────── (Active-Active Global Tables Synchronization)             │
- └─────────────────────────────────────────────────────────────────────────────────────────────────┘
-~~~
+![AWS Serverless Architecture Diagram](architecture/architecture-diagram.png)
 
 ---
 

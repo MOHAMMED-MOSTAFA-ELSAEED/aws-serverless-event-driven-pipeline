@@ -167,5 +167,5 @@ def lambda_handler(event, context):
 ## 👤 Author & Contact Information
 **Mohammed Mostafa Elsaeed**  
 *Computer Engineering Student | Cloud Infrastructure & DevOps Enthusiast*  
-Email: [mohammed.mostafa.elsaeed@gmail.com](mailto:mohammed.mostafa.elsaeed@gmail.com)
+Email: [mohammed.mostafa.elsaeed@gmail.com](mailto:mohammed.mostafa.elsaeed@gmail.com) •
 [LinkedIn](https://www.linkedin.com/in/mohammed-mostafa-elsaeed/) • [GitHub](https://github.com/MOHAMMED-MOSTAFA-ELSAEED)
